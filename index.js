@@ -6,6 +6,7 @@ const app = express();
 const wait = require('util').promisify(setTimeout);
 const port = 3000
 var serviceAccount = require("./DataBaseKeys.json");
+const db = admin.firestore();
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)

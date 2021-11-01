@@ -1,40 +1,14 @@
 {
   "firestore": {
-    "rules": "rules",
-    "indexes": "firebase.indexes.json"
-  },
-  "emulators": {
-    "auth": {
-      "port": 5000
-    },
-    "firestore": {
-      "port": 1000
-    },
-    "database": {
-      "port": 2000
-    },
-    "hosting": {
-      "port": 3000
-    },
-    "pubsub": {
-      "port": 4000
-    },
-    "ui": {
-      "enabled": true
-    }
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
   }
 }
