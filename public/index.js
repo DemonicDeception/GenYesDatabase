@@ -19,9 +19,9 @@ const firebaseConfig = {
       console.log(input)
       currentTicket = await db.collection("Prospect").doc(input.toString()).get()
       console.log(currentTicket.exists)
-      tixarray = await db.collection("Prospect").doc(input.toString()).collection("Tickets").doc("Ticket")
+      tixarray = await db.collection("Prospect").doc(input.toString())
       if(currentTicket.exists){
-        ticketArray = await db.collection("Prospect").doc(input).collection("Tickets").doc("Ticket").get()
+        ticketArray = await db.collection("Prospect").doc(input).get()
         let tixArr = ticketArray.data().tickets
         cT = tixArr
         let tixList = document.getElementById("TicketList")
@@ -67,19 +67,13 @@ const firebaseConfig = {
           barcodeNumber: bar,
           comments: comments
         }
-        let res
         try{
-        cT.push(newObj);
-        let dbUpdatrer = db.collection("Prospect").doc(input.toString()).collection("Tickets").doc("Ticket")
-        res = await tixarray.set({ tickets: "cT" })
-        console.log(res)
+            cT.push(newObj);
+            res = await db.collection("Prospect").doc(bar.toString()).set({ tickets: cT })
         }catch(err){
           document.getElementById("TicketList").innerHTML = `
           <h3>An unexpected error has occured: ${err}</h3>
           `
-        }
-        if(!res){
-          document.getElementById("TicketList").innerHTML = ``
         }
   }
   async function createTicketHandler(barcode){
