@@ -26,9 +26,12 @@ const firebaseConfig = {
         cT = tixArr
         let tixList = document.getElementById("TicketList")
         tixList.innerHTML = ""
+        tixList.innerHTML = `
+          <button onclick="createTicketHandler()">Create Ticket</button>
+        `
         for(i = 0; i < tixArr.length; i++){
           tixList.innerHTML += `
-          <button onclick="ticketClickHandler(${i})">Ticket #${i} <br> STL: ${tixArr[i].stl}</button>
+          <button onclick="ticketClickHandler(${i})">Ticket #${i+1} <br> STL: ${tixArr[i].stl}</button>
           `
         }
   
@@ -51,7 +54,7 @@ const firebaseConfig = {
     comments = cM.comments
     document.getElementById("TicketList").innerHTML = ""
     document.getElementById("TicketList").innerHTML += `
-    <h1>Ticket #${ticket}</h1>
+    <h1>Ticket #${ticket+1}</h1>
     <h3>Ticket Status: ${finished} <br> Completion Date: ${completionDate} <br> Barcode Number: ${barcodeNumber} <br> Comments from STL: ${comments}</h3>
     `
   }
