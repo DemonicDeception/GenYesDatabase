@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "name": "databasev1",
+=======
+    "name": "databaseV1",
+>>>>>>> 1f606e1904a2398b8106cfbd6100e058a6e6fe32
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
