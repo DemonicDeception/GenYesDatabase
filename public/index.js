@@ -56,8 +56,22 @@ const firebaseConfig = {
     document.getElementById("TicketList").innerHTML += `
     <h1>Ticket #${ticket+1}</h1>
     <h3>Ticket Status: ${finished} <br> Completion Date: ${completionDate} <br> Barcode Number: ${barcodeNumber} <br> Comments from STL: ${comments}</h3>
+    <button onclick="editTicketClicker()">Edit Ticket</button>
     `
   }
+async function editTicketClicker(){
+    document.getElementById("TicketList").innerHTML = `
+    <form onsubmit="editTicket(); return false">
+        <br>STL Name: <input id="stl" type="text" value="${cM.stl}"></input>
+        <br>Completed? ("true or false") <input id="completed" type="text" value="${cM.finished}"></input>
+        <br>Comments: <input id="comments" type="text" value="${cM.comments}"></input>
+        <br><input type="submit"></input>
+      </form>
+    `
+  }
+async function editTicket(){
+  
+}
   async function makeTicket(){
     bar = document.getElementById("searchbar").value.toString()
     comp = document.getElementById("completed").value
@@ -73,6 +87,8 @@ const firebaseConfig = {
         try{
             cT.push(newObj);
             res = await db.collection("Prospect").doc(bar.toString()).set({ tickets: cT })
+            document.getElementById("TicketList").innerHTML = `
+            `
         }catch(err){
           document.getElementById("TicketList").innerHTML = `
           <h3>An unexpected error has occured: ${err}</h3>
