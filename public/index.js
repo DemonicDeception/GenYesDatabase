@@ -56,12 +56,12 @@ const firebaseConfig = {
     document.getElementById("TicketList").innerHTML += `
     <h1>Ticket #${ticket+1}</h1>
     <h3>Ticket Status: ${finished} <br> Completion Date: ${completionDate} <br> Barcode Number: ${barcodeNumber} <br> Comments from STL: ${comments}</h3>
-    <button onclick="editTicketClicker()">Edit Ticket</button>
+    <button onclick="editTicketClicker(${ticket})">Edit Ticket</button>
     `
   }
-async function editTicketClicker(){
+async function editTicketClicker(ticket){
     document.getElementById("TicketList").innerHTML = `
-    <form onsubmit="editTicket(); return false">
+    <form onsubmit="editTicket(${ticket}); return false">
         <br>STL Name: <input id="stl" type="text" value="${cM.stl}"></input>
         <br>Completed? ("true or false") <input id="completed" type="text" value="${cM.finished}"></input>
         <br>Comments: <input id="comments" type="text" value="${cM.comments}"></input>
@@ -69,8 +69,22 @@ async function editTicketClicker(){
       </form>
     `
   }
-async function editTicket(){
-  
+async function editTicket(i){
+  stl = document.getElementById("stl").value.toString()
+  com = document.getElementById("comments").value.toString()
+  comp = document.getElementById("completed").value.toString()
+  ba = document.getElementById("searchbar").value.toString()
+  cM = {
+    stl: stl,
+    finished: comp,
+    comments: com
+  }
+  console.log(i)
+  cT[i]=(cM);
+  res = await db.collection("Prospect").doc(ba.toString()).set({ tickets: cT })
+  document.getElementById("TicketList").innerHTML = `
+  `
+
 }
   async function makeTicket(){
     bar = document.getElementById("searchbar").value.toString()
