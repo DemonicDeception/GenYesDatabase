@@ -9,7 +9,8 @@ const firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore()
-  
+
+  //Discord Token: OTA1MzE1NDAzMzk4NTQxMzYz.YYISrA.6Lk94cxq7jyXEZUGapoO7UeYHGs
   // "2341241"
   let cT = []
   let tixarray
